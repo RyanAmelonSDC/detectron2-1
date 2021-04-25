@@ -64,7 +64,7 @@ class DatasetFromList(data.Dataset):
     Wrap a list to a torch Dataset. It produces elements of the list as data.
     """
 
-    def __init__(self, lst: list, copy: bool = True, serialize: bool = True):
+    def __init__(self, lst: list, copy: bool = True, serialize: bool = False):
         """
         Args:
             lst (list): a list which contains elements to produce.
@@ -77,7 +77,7 @@ class DatasetFromList(data.Dataset):
         """
         self._lst = lst
         self._copy = copy
-        self._serialize = serialize
+        self._serialize = False
 
         def _serialize(data):
             buffer = pickle.dumps(data, protocol=-1)
